@@ -16,47 +16,30 @@
 // - bool, 1 байт, true/false
 
 #include <iostream>
-#include <limits>
-#include <typeinfo>
-
-template<typename T>
-void printTypeInfo()
-{
-	if (std::is_same<T, char>::value || std::is_same<T, unsigned char>::value) {
-		std::cout << typeid(T).name() << ", " << sizeof(T) << " byte, " << static_cast<int>(std::numeric_limits<T>::min()) << "..." << static_cast<int>(std::numeric_limits<T>::max()) << std::endl;
-	} 
-	else if (std::is_same<T, float>::value || std::is_same<T, unsigned float>::value || std::is_same<T, double>::value || std::is_same<T, unsigned double>::value) {
-		std::cout << typeid(T).name() << ", " << sizeof(T) << " bytes, " << std::numeric_limits<T>::lowest() << "..." << std::numeric_limits<T>::max() << std::endl;
-	}
-	else {
-		std::cout << typeid(T).name() << ", " << sizeof(T) << " bytes, " << std::numeric_limits<T>::min() << "..." << std::numeric_limits<T>::max() << std::endl;
-	}
-}
 
 int main() 
 {
 	std::cout << "Data types:" << std::endl; // Типы данных
 
 	std::cout << std::endl << "Integer types:" << std::endl; // Целочисленные
-	printTypeInfo<char>();
-	printTypeInfo<unsigned char>();
-	printTypeInfo<short>();
-	printTypeInfo<unsigned short>();
-	printTypeInfo<int>();
-	printTypeInfo<unsigned int>();
-	printTypeInfo<long long>();
-	printTypeInfo<unsigned long long>();
-	std::cout << "__int64 is long long" << std::endl;
+	std::cout << "char - 1 byte, -128...127" << std::endl;
+	std::cout << "unsigned char - 1 byte, 0...255" << std::endl;
+	std::cout << "short - 2 bytes, -32768...32767" << std::endl;
+	std::cout << "unsigned short - 2 bytes, 0...65535" << std::endl;
+	std::cout << "int - 4 bytes, -2^31...2^31-1" << std::endl;
+	std::cout << "unsigned int - 4 bytes, 0...2^32-1" << std::endl;
+	std::cout << "long long - 8 bytes, -2^63...2^63-1" << std::endl;
+	std::cout << "unsigned long long - 8 bytes, 0...2^64-1" << std::endl;
 
 	std::cout << std::endl << "Character types:" << std::endl; // Символьные
-	printTypeInfo<char>();
+	std::cout << "char - 1 byte, -128...127" << std::endl;
 
 	std::cout << std::endl << "Real types:" << std::endl; // Вещественные
-	printTypeInfo<float>();
-	printTypeInfo<double>();
+	std::cout << "float - 4 bytes, 6-7 cifr" << std::endl;
+	std::cout << "double - 8 bytes, 15-16 cifr" << std::endl;
 
 	std::cout << std::endl << "Logical type:" << std::endl; // Логический
-	printTypeInfo<bool>();
+
 
 	std::cout << std::endl <<"Arithmetic operations:" << std::endl; // Арифметические операции
 
