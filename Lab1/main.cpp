@@ -35,8 +35,8 @@ int main()
 	std::cout << "char - 1 byte, -128...127" << std::endl;
 
 	std::cout << std::endl << "Real types:" << std::endl; // Вещественные
-	std::cout << "float - 4 bytes, 6-7 cifr" << std::endl;
-	std::cout << "double - 8 bytes, 15-16 cifr" << std::endl;
+	std::cout << "float - 4 bytes, 6-7 digits" << std::endl;
+	std::cout << "double - 8 bytes, 15-16 digits" << std::endl;
 
 	std::cout << std::endl << "Logical type:" << std::endl; // Логический
 
