@@ -23,7 +23,7 @@ template<typename T>
 void printTypeInfo()
 {
 	if (std::is_same<T, char>::value || std::is_same<T, unsigned char>::value) {
-		std::cout << typeid(T).name() << ", " << sizeof(T) << " bytes, " << static_cast<int>(std::numeric_limits<T>::min()) << "..." << static_cast<int>(std::numeric_limits<T>::max()) << std::endl;
+		std::cout << typeid(T).name() << ", " << sizeof(T) << " byte, " << static_cast<int>(std::numeric_limits<T>::min()) << "..." << static_cast<int>(std::numeric_limits<T>::max()) << std::endl;
 	}
 	else {
 		std::cout << typeid(T).name() << ", " << sizeof(T) << " bytes, " << std::numeric_limits<T>::min() << "..." << std::numeric_limits<T>::max() << std::endl;
