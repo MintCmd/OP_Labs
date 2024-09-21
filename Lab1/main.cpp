@@ -24,6 +24,9 @@ void printTypeInfo()
 {
 	if (std::is_same<T, char>::value || std::is_same<T, unsigned char>::value) {
 		std::cout << typeid(T).name() << ", " << sizeof(T) << " byte, " << static_cast<int>(std::numeric_limits<T>::min()) << "..." << static_cast<int>(std::numeric_limits<T>::max()) << std::endl;
+	} 
+	else if (std::is_same<T, float>::value || std::is_same<T, unsigned float>::value || std::is_same<T, double>::value || std::is_same<T, unsigned double>::value) {
+		std::cout << typeid(T).name() << ", " << sizeof(T) << " bytes, " << std::numeric_limits<T>::lowest() << "..." << std::numeric_limits<T>::max() << std::endl;
 	}
 	else {
 		std::cout << typeid(T).name() << ", " << sizeof(T) << " bytes, " << std::numeric_limits<T>::min() << "..." << std::numeric_limits<T>::max() << std::endl;
