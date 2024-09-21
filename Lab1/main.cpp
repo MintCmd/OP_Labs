@@ -39,7 +39,7 @@ int main()
 	std::cout << "double - 8 bytes, 15-16 digits" << std::endl;
 
 	std::cout << std::endl << "Logical type:" << std::endl; // Логический
-
+	std::cout << "bool - 1 byte, true/false" << std::cout;
 
 	std::cout << std::endl <<"Arithmetic operations:" << std::endl; // Арифметические операции
 
