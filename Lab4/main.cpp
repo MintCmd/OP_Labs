@@ -16,12 +16,16 @@ int main()
     int A, B, C;
     std::cout << "1. Input A, B, C (positive , int): "; //Введите натуральные числа А, В, С
     std::cin >> A >> B >> C;
-    if ((A+B)%C == 0 && C%B == 0) std::cout << (A+B)/C-C/B << std::endl;
-    else if ((A+B)%C == 0 && C%B != 0) std::cout << (A+B)/C-C*B << std::endl;
-    else std::cout << A-B+C << std::endl;
+    if (A>0 && B>0 && C>0) 
+    {
+        if ((A+B)%C == 0 && C%B == 0) std::cout << (A+B)/C-C/B << std::endl;
+        else if ((A+B)%C == 0 && C%B != 0) std::cout << (A+B)/C-C*B << std::endl;
+        else std::cout << A-B+C << std::endl;
+    } 
+    else std::cout << "Some number is not positive." << std::endl; //Какое-то число не положительно
 
     int N;
-    std::cout << std::endl << "2. Input N = 0, 1, 2, 3: " << std::endl; //Введите N
+    std::cout << std::endl << "2. Input N = 0, 1, 2, 3: "; //Введите N
     std::cin >> N;
     switch (N)
     {
@@ -42,18 +46,18 @@ int main()
     }
 
     int x;
-    std::cout << std::endl << "3. Input x = -1, 1: " << std::endl; //Введите x
+    std::cout << std::endl << "3. Input x = -1, 1: "; //Введите x = -1, 1
     std::cin >> x;
     switch (x)
     {
         case -1:
-            std::cout << "Negative number." << std::endl;
+            std::cout << "Negative number." << std::endl; //Отрицательное число
             break;
         case 1:
-            std::cout << "Positive numver." << std::endl;
+            std::cout << "Positive number." << std::endl; //Положительное число
             break;
         default:
-            std::cout << "x is not -1 nor 1." << std::endl;
+            std::cout << "x is not -1 nor 1." << std::endl; //х не равно -1 или 1
     }
 
     return 0;
