@@ -35,8 +35,8 @@ int main()
 	std::cout << "char - 1 байт, -128...127" << std::endl;
 
 	std::cout << std::endl << "Вещественные:" << std::endl; // Вещественные
-	std::cout << "float - 4 байта, 6-7 digits" << std::endl;
-	std::cout << "double - 8 байта, 15-16 digits" << std::endl;
+	std::cout << "float - 4 байта, 6-7 цифр" << std::endl;
+	std::cout << "double - 8 байта, 15-16 цифр" << std::endl;
 
 	std::cout << std::endl << "Логический:" << std::endl; // Логический
 	std::cout << "bool - 1 Байт, true/false" << std::endl;
