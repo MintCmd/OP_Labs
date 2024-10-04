@@ -3,16 +3,23 @@
 
 #include <iostream>
 
-int main() 
-{
+int main() {
     int x, i;
-    std::cout << "Input x and i (0<x<10^9, 0<i<31): "; //Введите x и i 
-    std::cin >> x >> i; //Ввод
-    if (0<x && x<1000000000) {
+    std::cout << "Input: x (0<x<10^9) and i (0<=i<=31): ";
+    std::cin >> x >> i;
+    if (x<=0 || x>=1000000000) {
+        std::cout << "Error: incorrect x." << std::endl;
+    }
+    else if (i<0 || i>31) { 
+        std::cout << "Error: incorrect i." << std::endl;
+    }
+//Проверка на i не обязательна, программа работает и при при иных значениях, но они устанавливают "1" в одни и те же биты.
+//Например: i = 32 в 0-ой бит, i = 33 в 1-ый бит, i = -1 в 31-ый бит и т.д.
+    else {
         std::cout << (x | (1 << i)) << std::endl;
     }
-    else {
-        std::cout << "Error! Incorrect x." << std::endl; //Ошибка! Некоректное число x.
-    }
+//Пример:
+//Ввод: x = 10 (...1010), i = 2
+//Вывод: 14 (...1110)
     return 0;
 }
