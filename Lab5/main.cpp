@@ -7,29 +7,49 @@
 #include <iostream>
 
 int main()
-{
-    const int N_Max = 10;
+{   
+    //Задание 1
+    const int N_Max = 1000; 
     int sum = 0;
     int max = 0;
-    int posl[N_Max] = {43, 642, 64, 12, 89, 423, 111, 1671, 234, 771};
-    for (int i=0; i<10;i++)
+    int n;
+    int seq[N_Max];
+    std::cout << "Input n: ";
+    std::cin >> n;
+    std::cout << "Input values of sequence: ";
+    for(int i=0;i<n;i++)
+        std::cin >> seq[i];
+    for (int i=0; i<n;i++)
     {
-        if (posl[i]%10==0 || posl[i]%10==7)
+        if (seq[i]%10==0 || seq[i]%10==7)
         {
-            sum+=posl[i];
-            if (max<posl[i]) max=posl[i];
-            std::cout << "Number " << posl[i] << " has number " << i+1 << " in the sequance." << std::endl;
+            sum+=seq[i];
+            if (max<seq[i]) max=seq[i];
+            std::cout << "Number " << seq[i] << " is №" << i+1 << " in the sequence." << std::endl;
         }
 
     }
     if (max!=0) std::cout << "Max number: " << max << std::endl;
     else std::cout << "There is no such a number." << std::endl;
     std::cout << "Sum of numbers: " << sum << std::endl;
+    /* Пример:
+    Ввод: 10
+    45 57 110 229 80 77 555 234 10 6
     
+    Вывод:
+    Number 57 is №2 in the sequence.
+    Number 110 is №3 in the sequence.
+    Number 80 is №5 in the sequence.
+    Number 77 is №6 in the sequence.
+    Number 10 is №9 in the sequence.
+    Max number: 110
+    Sum of numbers: 334
+    */
     
-
+    //Задание 2
     int N;
     int nsum = 0;
+    std::cout <<std::endl << "Input N (0<N<10^9): ";
     std::cin >> N;
     if (0<N && N<1000000000) 
     {
@@ -45,6 +65,8 @@ int main()
     {
         std::cout << "Incorrect N.";
     }
-
+    //Пример
+    //Ввод: 54326780 
+    //Вывод: 15
     return 0;
 }
