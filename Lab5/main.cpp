@@ -14,23 +14,41 @@ int main()
     int max = 0;
     int n;
     int seq[N_Max];
+
     std::cout << "Input n: ";
     std::cin >> n;
     std::cout << "Input values of sequence: ";
+    
     for(int i=0;i<n;i++)
-        std::cin >> seq[i];
-    for (int i=0; i<n;i++)
     {
+        std::cin >> seq[i];
+        if (seq[i]<=0)
+        {
+            std::cout << "Error: some numbers in sequence are not positive." << std::endl;
+            return 1;
+        }
+    }
+
+    for (int i=0; i<n;i++)
+    {   
         if (seq[i]%10==0 || seq[i]%10==7)
         {
             sum+=seq[i];
-            if (max<seq[i]) max=seq[i];
+            if (max<seq[i])
+            {
+                max=seq[i];
+            } 
             std::cout << "Number " << seq[i] << " is №" << i+1 << " in the sequence." << std::endl;
         }
-
     }
-    if (max!=0) std::cout << "Max number: " << max << std::endl;
-    else std::cout << "There is no such a number." << std::endl;
+    if (max!=0)
+    {
+        std::cout << "Max number: " << max << std::endl;
+    } 
+    else
+    {
+        std::cout << "There is no such a number." << std::endl;
+    }
     std::cout << "Sum of numbers: " << sum << std::endl;
     /* Пример:
     Ввод: 10
@@ -56,7 +74,10 @@ int main()
         while (N>0)
         {
             int digit = N%10;
-            if (digit%2==1) nsum+=digit;
+            if (digit%2==1)
+            {
+                nsum+=digit;
+            } 
             N/=10;
         }
         std::cout << "Sum of odd digits: " << nsum << std::endl;
