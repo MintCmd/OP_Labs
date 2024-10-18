@@ -21,23 +21,25 @@
 
 int main()
 {
-    //1.
+    //Задание 1.
     const int N_Max = 10000;
-    int posl1[N_Max];
+    int seq1[N_Max];
     bool hasPrime = false;
     int n;
     std::cout << "Task 1." << std::endl << "Input: n: ";
     std::cin >> n;
     std::cout << "Input: " << n << " values: ";
     for(int i=0; i<n; i++) //Цикл для ввода последовательности
-        std::cin >> posl1[i];
-
-    for(int i=0; i<n; i++) //Цикл для проверки, есть ли в последовательности промтое число
+    {
+        std::cin >> seq1[i];
+    }
+        
+    for(int i=0; i<n; i++) //Цикл для проверки, есть ли в последовательности проcтое число
     {
         bool isPrime=true;
-        for(int d=2; d<=sqrt(posl1[i])+1; d++)
+        for(int d=2; d<=sqrt(seq1[i]); d++)
         {
-            if(posl1[i]%d == 0)
+            if(seq1[i]%d == 0)
             {
                 isPrime = false;
                 break;
@@ -55,88 +57,110 @@ int main()
     }
     else
     {
-        for(int i=0; i<n-1; i++) //Двойной цикл для сортировки по невозрастанию
+        for(int i=0; i<n-1; i++) //Двойной цикл для сортировки по невозрастанию SWAP SORT
+        {
             for(int j=i+1; j<n; j++)
-                if(posl1[i] < posl1[j])
+            {
+                if(seq1[i] < seq1[j])
                 {
-                    int tmp = posl1[i];
-                    posl1[i] = posl1[j];
-                    posl1[j] = tmp;
+                    int tmp = seq1[i];
+                    seq1[i] = seq1[j];
+                    seq1[j] = tmp;
                 }
+            }
+        }
         std::cout << "Sorted sequance: ";
         for(int i = 0; i<n; i++)
-            std::cout << posl1[i] << " ";
+        {
+            std::cout << seq1[i] << " ";
+        }
     }
 
-    //2.
-    int posl2[N_Max];
-    char firstDigit[N_Max];
-    char minDigit[N_Max];
+    //Задание 2.
+    int seq2[N_Max];
+    int firstDigit[N_Max];
+    int minDigit[N_Max];
     int n2;
     std::cout << std::endl << "Task 2." << std::endl << "Input: n: ";
     std::cin >> n2;
     std::cout << "Input: " << n2 << " values: ";
     for(int i=0; i<n2; i++) //Цикл для ввода массива и поиска первой и минимальной цифр
     {
-        std::cin >> posl2[i];
-        firstDigit[i] = posl2[i];
+        std::cin >> seq2[i];
+        firstDigit[i] = seq2[i];
 
-        while(firstDigit[i] > 9) firstDigit[i] /= 10;
-        int dif = posl2[i];
+        while(firstDigit[i] > 9)
+        {
+            firstDigit[i] /= 10;
+        } 
+        int dif = seq2[i];
         minDigit[i] = 9;
 
         while(dif > 0)
         {
-            char min = dif%10;
+            int min = dif%10;
             if(minDigit[i] < min)
+            {
                 minDigit[i] = min;
+            }
             dif /= 10;
         }
     }
 
     for(int i=0; i<n2-1; i++) //Двойной цикл для сортировки по неубыванию
-            for(int j=i+1; j<n2; j++)
-                if((firstDigit[i] > firstDigit[j]) ||
-                    (firstDigit[i] == firstDigit[j] && minDigit[i] > minDigit[j]) ||
-                        (firstDigit[i] == firstDigit[j] && minDigit[i] == minDigit[j] && posl2[i] > posl2[j]))
-                {
-                    int tmp = posl2[i];
-                    posl2[i] = posl2[j];
-                    posl2[j] = tmp;
+    {
+        for(int j=i+1; j<n2; j++)
+        {
+            if((firstDigit[i] > firstDigit[j]) || 
+                ((firstDigit[i] == firstDigit[j]) && (minDigit[i] > minDigit[ j])) || 
+                    ((firstDigit[i] == firstDigit[j]) && (minDigit[i] == minDigit[j]) && (seq2[i] > seq2[j])))
+            {
+                int tmp = seq2[i];
+                seq2[i] = seq2[j];
+                seq2[j] = tmp;
 
-                    tmp = firstDigit[i];
-                    firstDigit[i] = firstDigit[j];
-                    firstDigit[j] = tmp;
+                tmp = firstDigit[i];
+                firstDigit[i] = firstDigit[j];
+                firstDigit[j] = tmp;
 
-                    tmp = minDigit[i];
-                    minDigit[i] = minDigit[j];
-                    minDigit[j] = tmp;
-                }
-
-        std::cout << "Sorted sequance: ";
-        for(int i = 0; i<n2; i++)
-            std::cout << posl2[i] << " ";
+                tmp = minDigit[i];
+                minDigit[i] = minDigit[j];
+                minDigit[j] = tmp;
+            }
+        }        
+    } 
+            
+    std::cout << "Sorted sequance: ";
+    for(int i = 0; i<n2; i++)
+    {
+        std::cout << seq2[i] << " ";
+    }
     
 
-    //3.
+    //Задание 3.
     const int N_Max3 = 100, M_Max3 = 100;
-    int posl3[N_Max3][M_Max3];
+    int matrix[N_Max3][M_Max3];
     int n3, m3;
     int sumstr = INT_MAX;
     int istr;
     std::cout << std::endl << "Task 3." << std::endl << "Input: n and m: ";
-    std::cin >> n3 >> m3;
+    std::cin >> n3;
+    std::cin >> m3;
     std::cout << "Input: " << n3 << "x" << m3 << " matrix values below." << std::endl;
-    for(int i=0; i<n3; i++)
-        for(int j=0; j<m3; j++) //Цикл для ввода последовательности
-            std::cin >> posl3[i][j];
+    for(int i=0; i<n3; i++) //Цикл для ввода последовательности
+    {
+        for(int j=0; j<m3; j++)
+        {
+            std::cin >> matrix[i][j];
+        }
+    }
 
     for(int i=0; i<n3; i++) //Цикл для нахождения минимальной суммы строки и номера строки
     {
         int minsum = 0;
         for(int j=0; j<m3; j++)
         {
-            minsum += posl3[i][j];
+            minsum += matrix[i][j];
         }
         if(sumstr > minsum)
         {
@@ -149,53 +173,65 @@ int main()
         if(istr == i)
         {
             for(int j=0; j<m3; j++)
-            posl3[i][j] = sumstr;
+            {
+                matrix[i][j] = sumstr;
+            }
         }
     }
     std::cout << "Changed matrix:" << std::endl;
     for(int i=0; i<n3; i++) //Цикл для вывода изменённого массива
     {
         for(int j=0; j<m3; j++)
-            std::cout << posl3[i][j] << " ";
+        {
+            std::cout << matrix[i][j] << " ";
+        }
         std::cout << std::endl;
     }
 
-    //4.
+
+    //Задание 4.
     const int N_Max20k = 20000;
-    int posl4[N_Max20k];
+    int seq4[N_Max20k];
     int n4;
     std::cout << std::endl << "Task 4." << std::endl << "Input: n: ";
     std::cin >> n4;
     std::cout << "Input: " << n4 << " values: ";
     for(int i=0; i<n4; i++) //Цикл для ввода последовательности
-        std::cin >> posl4[i];
-    
+    {
+        std::cin >> seq4[i];
+    }
+        
     int j1 = 0; //Удаление
     for(int i=0;i<n4;i++)
     {
         int y = 0;
-        int x = posl4[i];
-        while(x>0) {
+        int x = seq4[i];
+        while(x>0) 
+        {
             int d = x % 10;
             y = y*10 + d;
             x = x/10;
         }
-        if (posl4[i] == y)
+        if (seq4[i] == y)
+        {
             continue;
-        posl4[j1] = posl4[i];
+        }
+        seq4[j1] = seq4[i];
         j1++;
     }
     n4 = j1;
     std::cout << "Sequence with deleted palindromes: ";
     for(int i = 0; i<n4; i++)
-        std::cout << posl4[i] << " ";   
+    {
+        std::cout << seq4[i] << " ";  
+    }     
 
     for(int i=0;i<n4;i++) //Дублирование простых чисел
     {    
         bool isPrime=true;
-        for(int d=2; d<=sqrt(posl4[i])+1; d++)
+        for(int d=2; d<=sqrt(seq4[i]); d++)
         {
-            if(posl4[i]%d == 0)
+            if(seq4[i]%d == 0)
             {
                 isPrime = false;
                 break;
@@ -205,7 +241,7 @@ int main()
         {
             for(int j=n;j>1;j--)
             {
-                posl4[j] = posl4[j-1];
+                seq4[j] = seq4[j-1];
             }
             i++;
             n4++;
@@ -213,6 +249,8 @@ int main()
     }
     std::cout << std::endl << "Sequence with doubled prime numbers: ";
     for(int i = 0; i<n4; i++)
-        std::cout << posl4[i] << " ";
+    {
+        std::cout << seq4[i] << " ";
+    }
     return 0;
 }
