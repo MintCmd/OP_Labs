@@ -27,16 +27,21 @@ int main() {
         return -1;
     }
 
-    unsigned short* p = &x; //Указатель p указывает на адрес переменной x в стеке
+    unsigned short* p = &x; //Указывает на переменную x в стеке
 
-    std::cout <<  "x has value " << *p << " and its' adress in stack is " << p << std::endl; //Вывод значения и адреса переменной x
+    std::cout <<  "x has value " << *p << " and it's adress in stack is " << p << std::endl; //Вывод значения и адреса переменной x
 
     unsigned char* c = reinterpret_cast<unsigned char*>(p); //Указатель на первый байт
 
     for(int i=0;i<sizeof(unsigned short);i++) {
-        std::cout <<  "Byte " << i+1 << " value is " << static_cast<unsigned short>(*(c+i)) << " or ";
+        std::cout <<  "Byte " << i+1 << " value is " << static_cast<int>(*(c+i)) << " or ";
         BinaryFormat(c[i]);
     }
+    //Пример ввода и вывода
+    //Input x - 0 ... 65,535: 45678
 
+    //x has value 45678 and it's adress in stack is 00000033F74FFB74 (адрес после каждого выполнения будет меняться, потому что указатель стека возвращается в начало после завершения программы)
+    //Byte 1 value is 110 or 01101110
+    //Byte 2 value is 178 or 10110010
     return 0;
 }
