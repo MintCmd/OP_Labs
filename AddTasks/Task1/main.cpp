@@ -38,15 +38,13 @@ int main() {
     std::cin >> P2;
     std::cin >> A;
     if(0<Q1 && Q1<=1000 && 0<P1 && P1<=1000 && 0<Q2 && Q2<=1000 && 0<P2 && P2<=1000 && 0<=A && A<=1000) {
-        t1 = 0;
-        while(A>0) {
-            A = A - t1*Q1;
-            t2 = 1 + (A-1)/Q2;
+        for(t1=0; t1*Q1<=A;++t1) {
+            int remaining = A - t1*Q1;
+            t2 = 1 + (remaining-1)/Q2;
             cost = t1*P1 + t2*P2;
             if(min_cost > cost) {
                 min_cost = cost;
             }
-        t1++;
         }
     } 
     else {
