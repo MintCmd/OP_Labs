@@ -1,5 +1,4 @@
-Hello, world!
-Test...
-Monore
-Test test test
-End
+Mathematicians focus on four primary areas of study: quantities, structure, space, and change. 
+The study of quantities involves numbers, including natural numbers and integers, and the operations that can be applied to them, such as addition, subtraction, multiplication, and division. 
+Number Theory provides a deeper understanding of these concepts. 
+The study of structure began with Pythagoras, who is famous for his theorem about right-angled triangles, which laid the foundation for algebra.
