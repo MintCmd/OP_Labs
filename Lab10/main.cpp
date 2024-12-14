@@ -5,6 +5,10 @@
 В противном случае упорядочить последовательность по неубыванию. Последовательность хранить в односвязном списке.
 */
 
+// Пример ввода и вывода:
+//Ввод: 12 23 34 45 56 67 78 89 90 0
+//Вывод: 12 23 34 45 56 56 67 67 
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -14,7 +18,7 @@ struct Node {
     Node* next;
 };
 
-// Функция для добавления узла в конец списка
+// Функция для добавления элемента в конец списка
 void addNode(Node*& head, int value) {
     Node* newNode = new Node{value, nullptr};
     if (head == nullptr) {
@@ -26,19 +30,6 @@ void addNode(Node*& head, int value) {
         }
         current->next = newNode;
     }
-}
-
-// Функция для получения первой цифры числа
-int getFirstDigit(int number) {
-    while (number >= 10) {
-        number /= 10;
-    }
-    return number;
-}
-
-// Функция для получения последней цифры числа
-int getLastDigit(int number) {
-    return number % 10;
 }
 
 // Функция для проверки, содержит ли число цифры 2, 4 или 6
@@ -65,12 +56,24 @@ bool contains69(int number) {
     return false;
 }
 
+// Функция для получения первой цифры числа
+int getFirstDigit(int number) {
+    while (number >= 10) {
+        number /= 10;
+    }
+    return number;
+}
+
+// Функция для получения последней цифры числа
+int getLastDigit(int number) {
+    return number % 10;
+}
+
 // Функция для проверки упорядоченности списка по первой или последней цифре
 bool isSorted(Node* head) {
     Node* current = head;
     bool sortedByFirst = true;
     bool sortedByLast = true;
-
     while (current != nullptr && current->next != nullptr) {
         if (getFirstDigit(current->data) > getFirstDigit(current->next->data)) {
             sortedByFirst = false;
@@ -80,23 +83,21 @@ bool isSorted(Node* head) {
         }
         current = current->next;
     }
-
     return sortedByFirst || sortedByLast;
 }
 
-// Функция для удаления чисел, не содержащих цифры 2, 4 и 6
+// Функция для удаления элементов, не содержащих цифры 2, 4 и 6
 void removeNumbers(Node*& head) {
     Node* current = head;
     Node* prev = nullptr;
-
     while (current != nullptr) {
         if (!contains246(current->data)) {
+            Node* temp = current;
             if (prev == nullptr) {
                 head = current->next;
             } else {
                 prev->next = current->next;
             }
-            Node* temp = current;
             current = current->next;
             delete temp;
         } else {
@@ -106,10 +107,9 @@ void removeNumbers(Node*& head) {
     }
 }
 
-// Функция для дублирования чисел, содержащих цифры 6 и 9
+// Функция для дублирования элементов, содержащих цифры 6 и 9
 void duplicateNumbers(Node*& head) {
     Node* current = head;
-
     while (current != nullptr) {
         if (contains69(current->data)) {
             Node* newNode = new Node{current->data, current->next};
@@ -125,34 +125,19 @@ void duplicateNumbers(Node*& head) {
 void sortList(Node*& head) {
     std::vector<int> values;
     Node* current = head;
-
-    // Сбор значений в вектор
     while (current != nullptr) {
         values.push_back(current->data);
         current = current->next;
     }
-
-    // Сортировка вектора
     std::sort(values.begin(), values.end());
-
-    // Создание нового списка из отсортированного вектора
-    Node* newHead = nullptr;
+    current = head;
     for (int value : values) {
-        addNode(newHead, value);
+        current->data = value;
+        current = current->next;
     }
-
-    // Освобождение памяти старого списка
-    while (head != nullptr) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-
-    // Присваивание нового списка
-    head = newHead;
 }
 
-// Функция для печати списка
+// Функция для вывода списка
 void printList(Node* head) {
     Node* current = head;
     while (current != nullptr) {
@@ -162,19 +147,30 @@ void printList(Node* head) {
     std::cout << std::endl;
 }
 
+// Функция для освобождения памяти списка
+void freeList(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        Node* temp = current;
+        current = current->next;
+        delete temp;
+    }
+}
+
 int main() {
     Node* head = nullptr;
-    int n;
-    std::cout << "Input number of values: ";
-    std::cin >> n;
+    int number;
 
-    std::cout << "Input values: ";
-    for (int i = 0; i < n; ++i) {
-        int value;
-        std::cin >> value;
-        addNode(head, value);
+    std::cout << "Input numbers (end with 0 to stop):" << std::endl;
+    while (true) {
+        std::cin >> number;
+        if (number == 0) {
+            break;
+        }
+        addNode(head, number);
     }
 
+    // Проверка упорядоченности и обработка списка
     if (isSorted(head)) {
         removeNumbers(head);
         duplicateNumbers(head);
@@ -182,15 +178,11 @@ int main() {
         sortList(head);
     }
 
-    std::cout << "Result: ";
+    std::cout << "Result:" << std::endl;
     printList(head);
 
     // Освобождение памяти
-    while (head != nullptr) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
+    freeList(head);
 
     return 0;
 }
