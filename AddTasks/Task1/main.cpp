@@ -1,9 +1,6 @@
 /*
 Задача №1 «Грузоперевозки»
 
-Ограничение по времени 2 сек.
-Ограничение по памяти 256 Мб
-
 Судоходная компания предлагает два вида транспорта для перевозки сыпучих грузов. 
 Грузовик первого типа может перевезти Q1 тонн груза за одну поездку. 
 Разовая поездка стоит P1, и цена не зависит от уровня загрузки транспортного средства. 
@@ -30,18 +27,19 @@
 int main() {
     int Q1, P1, Q2, P2, A;
     int cost = 0;
-    int min_cost = 1000000;
-    int t1, t2;
+    int min_cost = INT_MAX;
+    int trips1, trips2;
+    std::cout << "Input values: ";
     std::cin >> Q1;
     std::cin >> P1;
     std::cin >> Q2;
     std::cin >> P2;
     std::cin >> A;
     if(0<Q1 && Q1<=1000 && 0<P1 && P1<=1000 && 0<Q2 && Q2<=1000 && 0<P2 && P2<=1000 && 0<=A && A<=1000) {
-        for(t1=0; t1*Q1<=A;++t1) {
-            int remaining = A - t1*Q1;
-            t2 = 1 + (remaining-1)/Q2;
-            cost = t1*P1 + t2*P2;
+        for(trips1=0; trips1*Q1<=A;++trips1) {
+            int remaining = A - trips1*Q1;
+            trips2 = 1 + (remaining-1)/Q2;
+            cost = trips1*P1 + trips2*P2;
             if(min_cost > cost) {
                 min_cost = cost;
             }
@@ -52,7 +50,7 @@ int main() {
         return -1;
     }
     
-    std::cout << min_cost << std::endl;
-    return 0;
+    std::cout << "Minimal cost: " << min_cost << std::endl;
 
+    return 0;
 }
